@@ -19,6 +19,10 @@
                 justify-content: center;
                 width: 100%;
                 margin: 10px;
+            }
+
+            body{         
+                padding:50px;
             }</style><script src="gcpv-main.js"></script></head><body><div><h3>1.Display Metedata</h3><divs id="UC1" class="llwp-map" data-leaflet="{ 'name': 'LCC', 'projection': 3978, 'zoom': 4, 'center': [60,-100], 'language': 'fr-CA', 'basemapOptions':{'id':'transport','shaded':true,'labeled':true} ,  
             'layers':[
             ]}"></divs></div><p>This map is in LLC projection with an English interface.</p><p><strong>Configuraion Snippet:</strong></p><div class="panel">&lt;div id="UC1" class="llwp-map" data-leaflet="{ 'name': 'LCC', 'projection': 3978, 'zoom': 4, 'center': [60,-100], 'language': 'fr-CA', 'basemapOptions':{'id':'transport','shaded':true,'labeled':true} , 'layers':[ ]}"></div><p><strong>Code Snippet:</strong></p><div class="panel">function addPolyline(map) {<br>// call an api function to draw a polyline<br>const polyline = cgpv.api.map(map).addPolyline(<br>[<br>[45, -100],<br>[50, -105],<br>],<br>{<br>stroke: true,<br>color: '#000',<br>weight: 5,<br>opacity: '0.8',<br>}<br>);<br>cgpv.api.map(map).addToGeometryGroup('myGroup', polyline);<br>}<br></div><hr/><div><h3>2. Display Thumbnail</h3><div id="UC2" class="llwp-map" data-leaflet="{ 'name': 'Web Mercator', 'projection': 3857, 'zoom': 4, 'center': [60,-100], 'language': 'en-CA','basemapOptions':{'id':'transport','shaded':false},
@@ -32,9 +36,7 @@
                 { 'url': 'https://geo.weather.gc.ca/geomet', 'type': 'ogcWMS', 'entries': 'RAQDPS-FW.CE_PM2.5-DIFF-YAvg' }
             ]}"></div><p>Use to display a map like a thumbnail with minimun functions.</p><p><strong>Configuraion Snippet:</strong></p><div class="panel">&lt;div id="UC2" class="llwp-map" data-leaflet="{ 'name': 'Web Mercator', 'projection': 3857, 'zoom': 4, 'center': [60,-100], 'language': 'en-CA','basemapOptions':{'id':'transport','shaded':false},<br>'layers':[<br>{ 'url': 'https://webservices.maps.canada.ca/arcgis/services/StatCan/census_subdivisions_2016_en/MapServer/WMSServer', 'type': 'ogcWMS', 'entries': '0' },<br>{ 'url': 'https://geoappext.nrcan.gc.ca/arcgis/rest/services/NRCAN/Investing_Energy_Canada_en/MapServer', 'type': 'esriDynamic', 'entries': '0, 2' },<br>{ 'url': 'https://geoappext.nrcan.gc.ca/arcgis/rest/services/GSCC/Geochronology/MapServer', 'type': 'esriDynamic', 'entries': '0' },<br>{ 'url': './geojson/lines.json', 'type': 'geoJSON' },<br>{ 'url': './geojson/points.json', 'type': 'geoJSON' }, { 'url': './geojson/polygons.json', 'type': 'geoJSON' },<br>{ 'url': 'https://geo.weather.gc.ca/geomet', 'type': 'ogcWMS', 'entries': 'RAQDPS-FW.CE_PM2.5-DIFF-YAvg' }<br>]}"<br></div><div><h3>3.Geo Search</h3><div id="UC3" class="llwp-map" data-leaflet="{ 'name': 'LCC_SHADED', 'projection': 3978, 'zoom': 4, 'center': [60,-100], 'language': 'fr-CA','basemapOptions':{'id':'simple','shaded':true,'labeled':false} ,
         'layers':[]}"></div><p>????</p><p><strong>Configuraion Snippet:</strong></p><div class="panel"></div></div><div><h3>4: Simple viewer</h3><div id="UC4" class="llwp-map" data-leaflet="{ 'name': 'LCC_SHADED', 'projection': 3978, 'zoom': 4, 'center': [60,-100], 'language': 'fr-CA','basemapOptions':{'id':'simple','shaded':true,'labeled':false} ,
-                'layers':[]}"></div><p>????</p><p><strong>Configuraion Snippet:</strong></p><div class="panel"></div></div><script>const mapsPosition = document.getElementsByClassName('maps-position');
-
-            function addPolyline(map) {
+                'layers':[]}"></div><p>????</p><p><strong>Configuraion Snippet:</strong></p><div class="panel"></div></div><script>function addPolyline(map) {
                 // call an api function to draw a polyline
                 const polyline = cgpv.api.map(map).addPolyline(
                     [
@@ -100,21 +102,4 @@
             cgpv.init(function () {
                 console.log('api is ready');
                 addPolygon('UC1');
-                // listen to an event emitted by mapWM
-                cgpv.api.on(
-                    'map/moveend',
-                    (args) => {
-                        console.log(args);
-                    },
-                    'mapWM'
-                );
-
-                // listen to all events emitted with same event name
-                cgpv.api.all('map/moveend', (args) => {
-                    mapsPosition[0].innerHTML = mapsPosition[1].innerHTML = args
-                        .map((map) => {
-                            return `<p>Map ${map.handlerName} with latitude ${map.position.lat} and longitude ${map.position.lng}</p>`;
-                        })
-                        .join(' ');
-                });
                 });</script></div></body></html>
