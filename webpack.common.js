@@ -13,11 +13,12 @@ const [major, minor, patch] = package.version.split('.');
 const hash = JSON.stringify(childProcess.execSync('git rev-parse HEAD').toString().trim());
 console.log(`Build CGP Viewer: ${major}.${minor}.${patch}`);
 
-// inject all samples file
+// inject all sample files
 const multipleHtmlPlugins = glob.sync('./public/templates/*.html').map((name) => {
     return new HtmlWebpackPlugin({
         template: `${name}`,
         filename: `${name.substring(name.lastIndexOf('/') + 1, name.length)}`,
+        title: 'Canadian Geospatial Platform Viewer',
         inject: 'head',
         scriptLoading: 'blocking',
         chunks: ['app'],
