@@ -84,11 +84,11 @@
                 // emit a new event to a geojson layer from url
                 // adding a geojson layer requires a type of geojson and url
 
-                const layerdata = cgpv.api.map('LYR4').createGeoJSONLayer({
+                const layerData = cgpv.api.map('LYR4').createGeoJSONLayer({
                     type: 'geoJSON',
                     url: 'https://raw.githubusercontent.com/fgpv-vpgf/contributed-plugins/master/chart/src/samples/geoJSON/pieChart.json',
                 });
-                document.getElementById('new-layer-id').innerText = layerdata.id;
+                document.getElementById('new-layer-id').innerText = layerData.id;
             });
             // find the button element by ID
             var removeGeoJSONButton = document.getElementById('remove-geojson');
