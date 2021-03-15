@@ -110,20 +110,12 @@
                 });
 
                 // get deleteGeomtryFromGroup button element for WM map
-                var deleteGeomtryFromGroup = document.getElementsByClassName('delete-geometries-from-group-btn')[0];
-
-                //  add event handler to the delete geometry group button
-                deleteGeomtryFromGroup.addEventListener('click', function (e) {
-                    // call an api function to  delete the geometry group
-                    cgpv.api.map('mapWM').deleteGeometriesFromGroup(document.getElementById('groupname').value);
-                });
-
-                // get deleteGeomtryFromGroup button element for WM map
                 var createGeomtryFromGroup = document.getElementsByClassName('create-group-btn')[0];
 
                 //  add event handler to the delete geometry group button
                 createGeomtryFromGroup.addEventListener('click', function (e) {
                     // call an api function to  delete the geometry group
                     cgpv.api.map('mapWM').createGeometryGroup(document.getElementById('groupname').value);
+                    alert('Geometry Group Created');
                 });
             });</script></body></html>
